@@ -7,8 +7,8 @@
   },
   "servers": [
     {
-      "url": "http://localhost:8080",
-      "description": "Local development server"
+      "url": "/",
+      "description": "Current server"
     }
   ],
   "tags": [
@@ -301,7 +301,14 @@
           },
           "category": {
             "type": "string",
-            "enum": ["breakfast", "lunch", "dinner", "dessert", "snack", "drink"],
+            "enum": [
+              "breakfast",
+              "lunch",
+              "dinner",
+              "dessert",
+              "snack",
+              "drink"
+            ],
             "example": "dinner"
           },
           "createdBy": {
@@ -370,7 +377,14 @@
           },
           "category": {
             "type": "string",
-            "enum": ["breakfast", "lunch", "dinner", "dessert", "snack", "drink"],
+            "enum": [
+              "breakfast",
+              "lunch",
+              "dinner",
+              "dessert",
+              "snack",
+              "drink"
+            ],
             "example": "dinner"
           }
         }
@@ -384,7 +398,14 @@
           },
           "name": {
             "type": "string",
-            "enum": ["breakfast", "lunch", "dinner", "dessert", "snack", "drink"],
+            "enum": [
+              "breakfast",
+              "lunch",
+              "dinner",
+              "dessert",
+              "snack",
+              "drink"
+            ],
             "example": "dinner"
           },
           "description": {
@@ -407,7 +428,14 @@
         "properties": {
           "name": {
             "type": "string",
-            "enum": ["breakfast", "lunch", "dinner", "dessert", "snack", "drink"],
+            "enum": [
+              "breakfast",
+              "lunch",
+              "dinner",
+              "dessert",
+              "snack",
+              "drink"
+            ],
             "example": "dinner"
           },
           "description": {
