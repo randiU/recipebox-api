@@ -1,0 +1,35 @@
+### Get all recipes
+GET http://localhost:8080/recipes
+
+
+### Create a recipe
+POST http://localhost:8080/recipes
+Content-Type: application/json
+
+{
+  "title": "Chicken Alfredo",
+  "description": "Creamy pasta with chicken",
+  "ingredients": ["chicken", "fettuccine", "cream", "parmesan"],
+  "instructions": "Cook pasta. Cook chicken. Make sauce. Combine everything.",
+  "prepTime": 15,
+  "cookTime": 25,
+  "servings": 4,
+  "difficulty": "easy",
+  "category": "dinner"
+}
+
+### Get one recipe by ID
+GET http://localhost:8080/recipes/:recipeId
+
+### Get all categories
+GET http://localhost:8080/categories
+
+### Create a category
+POST http://localhost:8080/categories
+Content-Type: application/json
+
+{
+  "name": "dinner",
+  "description": "Main meal recipes"
+}
+
