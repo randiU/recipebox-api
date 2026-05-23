@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const Recipe = require('../models/Recipe');
+const Recipe = require('../models/recipe');
 
 const getAllRecipes = async (req, res) => {
   try {
