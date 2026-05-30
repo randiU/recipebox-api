@@ -84,6 +84,9 @@
           },
           "400": {
             "description": "Invalid recipe data"
+          },
+          "500": {
+            "description": "Server error"
           }
         }
       }
@@ -130,7 +133,7 @@
       "put": {
         "tags": ["Recipes"],
         "summary": "Update one recipe by ID",
-        "description": "Updates an existing recipe by its MongoDB ObjectId. This route is documented for the project plan and can be implemented in a later step.",
+        "description": "Updates an existing recipe by its MongoDB ObjectId.",
         "parameters": [
           {
             "name": "id",
@@ -149,6 +152,17 @@
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/RecipeInput"
+              },
+              "example": {
+                "title": "Updated Chicken Alfredo",
+                "description": "Updated creamy pasta recipe with chicken",
+                "ingredients": ["chicken", "fettuccine", "cream", "parmesan", "garlic"],
+                "instructions": "Cook pasta. Cook chicken. Make sauce. Combine everything and serve warm.",
+                "prepTime": 20,
+                "cookTime": 30,
+                "servings": 4,
+                "difficulty": "medium",
+                "category": "dinner"
               }
             }
           }
@@ -162,13 +176,16 @@
           },
           "404": {
             "description": "Recipe not found"
+          },
+          "500": {
+            "description": "Server error"
           }
         }
       },
       "delete": {
         "tags": ["Recipes"],
         "summary": "Delete one recipe by ID",
-        "description": "Deletes an existing recipe by its MongoDB ObjectId. This route is documented for the project plan and can be implemented in a later step.",
+        "description": "Deletes an existing recipe by its MongoDB ObjectId.",
         "parameters": [
           {
             "name": "id",
@@ -190,6 +207,9 @@
           },
           "404": {
             "description": "Recipe not found"
+          },
+          "500": {
+            "description": "Server error"
           }
         }
       }
@@ -249,6 +269,87 @@
           },
           "400": {
             "description": "Invalid category data"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      }
+    },
+    "/categories/{id}": {
+      "put": {
+        "tags": ["Categories"],
+        "summary": "Update one category by ID",
+        "description": "Updates an existing category by its MongoDB ObjectId.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "MongoDB ObjectId of the category",
+            "schema": {
+              "type": "string",
+              "example": "665f456abc456abc456abc45"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CategoryInput"
+              },
+              "example": {
+                "name": "lunch",
+                "description": "Midday meal recipes"
+              }
+            }
+          }
+        },
+        "responses": {
+          "204": {
+            "description": "Category updated successfully"
+          },
+          "400": {
+            "description": "Invalid category data or ID format"
+          },
+          "404": {
+            "description": "Category not found"
+          },
+          "500": {
+            "description": "Server error"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Categories"],
+        "summary": "Delete one category by ID",
+        "description": "Deletes an existing category by its MongoDB ObjectId.",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "description": "MongoDB ObjectId of the category",
+            "schema": {
+              "type": "string",
+              "example": "665f456abc456abc456abc45"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Category deleted successfully"
+          },
+          "400": {
+            "description": "Invalid category ID format"
+          },
+          "404": {
+            "description": "Category not found"
+          },
+          "500": {
+            "description": "Server error"
           }
         }
       }

@@ -1,35 +1,142 @@
+@local = http://localhost:8080
+
+### =========================
+### RECIPES
+### =========================
+
 ### Get all recipes
-GET http://localhost:8080/recipes
+GET {{local}}/recipes
 
 
 ### Create a recipe
-POST http://localhost:8080/recipes
+POST {{local}}/recipes
 Content-Type: application/json
 
 {
-  "title": "Chicken Alfredo",
-  "description": "Creamy pasta with chicken",
-  "ingredients": ["chicken", "fettuccine", "cream", "parmesan"],
-  "instructions": "Cook pasta. Cook chicken. Make sauce. Combine everything.",
+  "title": "Lemon Blueberry Muffins",
+  "description": "Soft muffins with fresh blueberries and lemon flavor.",
+  "ingredients": ["flour", "sugar", "baking powder", "salt", "milk", "egg", "butter", "lemon zest", "blueberries"],
+  "instructions": "Mix the dry ingredients in one bowl and the wet ingredients in another. Combine gently, then fold in blueberries and lemon zest. Scoop into a muffin tin and bake until golden.",
   "prepTime": 15,
-  "cookTime": 25,
-  "servings": 4,
-  "difficulty": "easy",
+  "cookTime": 20,
+  "servings": 12,
+  "difficulty": "medium",
+  "category": "dessert"
+}
+
+
+### Get one recipe by ID
+### Replace with a real _id from MongoDB or the GET all response
+GET {{local}}/recipes/PASTE_RECIPE_ID_HERE
+
+
+### Update a recipe
+### Replace with a real _id
+PUT {{local}}/recipes/PASTE_RECIPE_ID_HERE
+Content-Type: application/json
+
+{
+  "title": "Updated Lemon Blueberry Muffins",
+  "description": "Soft muffins with fresh blueberries, lemon zest, and a brighter citrus flavor.",
+  "ingredients": ["flour", "sugar", "baking powder", "salt", "milk", "egg", "butter", "lemon zest", "blueberries", "lemon juice"],
+  "instructions": "Mix the dry ingredients in one bowl and the wet ingredients in another. Combine gently, then fold in blueberries, lemon zest, and lemon juice. Scoop into a muffin tin and bake until golden.",
+  "prepTime": 20,
+  "cookTime": 22,
+  "servings": 12,
+  "difficulty": "medium",
+  "category": "dessert"
+}
+
+
+### Delete a recipe
+### Use a different real _id from the one you want to keep
+DELETE {{local}}/recipes/PASTE_RECIPE_ID_HERE
+
+
+### Recipe validation test - invalid difficulty
+### Expected: 400 Bad Request
+POST {{local}}/recipes
+Content-Type: application/json
+
+{
+  "title": "Validation Test Recipe",
+  "description": "This should fail because the difficulty is invalid.",
+  "ingredients": ["test ingredient"],
+  "instructions": "This is only for testing validation.",
+  "prepTime": 5,
+  "cookTime": 10,
+  "servings": 2,
+  "difficulty": "super easy",
   "category": "dinner"
 }
 
-### Get one recipe by ID
-GET http://localhost:8080/recipes/:recipeId
+
+### Recipe error handling test - invalid ID format
+### Expected: 400 Bad Request
+GET {{local}}/recipes/badid
+
+
+### Recipe error handling test - valid ID format but not found
+### Expected: 404 Not Found
+GET {{local}}/recipes/665f123abc123abc123abc12
+
+
+### =========================
+### CATEGORIES
+### =========================
 
 ### Get all categories
-GET http://localhost:8080/categories
+GET {{local}}/categories
+
 
 ### Create a category
-POST http://localhost:8080/categories
+POST {{local}}/categories
 Content-Type: application/json
 
 {
-  "name": "dinner",
-  "description": "Main meal recipes"
+  "name": "snack",
+  "description": "Small recipes or quick bites between meals."
 }
 
+
+### Update a category
+### Replace with a real category _id
+PUT {{local}}/categories/PASTE_CATEGORY_ID_HERE
+Content-Type: application/json
+
+{
+  "name": "snack",
+  "description": "Updated snack recipes and quick bites."
+}
+
+
+### Delete a category
+### Replace with a real category _id
+DELETE {{local}}/categories/PASTE_CATEGORY_ID_HERE
+
+
+### Category validation test - invalid category name
+### Expected: 400 Bad Request
+POST {{local}}/categories
+Content-Type: application/json
+
+{
+  "name": "brunch",
+  "description": "This should fail because brunch is not an allowed category."
+}
+
+
+### Category error handling test - invalid ID format
+### Expected: 400 Bad Request
+PUT {{local}}/categories/badid
+Content-Type: application/json
+
+{
+  "name": "drink",
+  "description": "Updated drink recipes."
+}
+
+
+### Category error handling test - valid ID format but not found
+### Expected: 404 Not Found
+DELETE {{local}}/categories/665f456abc456abc456abc45
