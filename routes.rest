@@ -1,4 +1,5 @@
 @local = http://localhost:8080
+@render = https://recipebox-api-9222.onrender.com
 
 ### =========================
 ### RECIPES
